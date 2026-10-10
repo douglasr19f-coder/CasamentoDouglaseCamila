@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camila & Douglas - Nosso Casamento</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--olive-light:#F0F4EE;--olive-primary:#556B2F;--olive-dark:#38461E;--text-color:#2C332A}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:'Montserrat',Arial,sans-serif;background-color:#F8F9F7;background-image:url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23556b2f' fill-opacity='0.05'%3E%3Cpath d='M80 75c-3.3 0-6 2.7-6 6 0 4.2 6 9 6 9s6-4.8 6-9c0-3.3-2.7-6-6-6z'/%3E%3Ctext x='40' y='35' font-family='Georgia, serif' font-style='italic' font-size='10' fill='%2338461e' fill-opacity='0.07'%3Elove%3C/text%3E%3Ctext x='90' y='105' font-family='Georgia, serif' font-style='italic' font-size='10' fill='%2338461e' fill-opacity='0.07'%3Elove%3C/text%3E%3Cpath d='M30 85c-2.5 0-4.5 2-4.5 4.5 0 3.2 4.5 6.5 4.5 6.5s4.5-3.3 4.5-6.5c0-2.5-2-4.5-4.5-4.5z'/%3E%3Cpath d='M95 25c-2.5 0-4.5 2-4.5 4.5 0 3.2 4.5 6.5 4.5 6.5s4.5-3.3 4.5-6.5c0-2.5-2-4.5-4.5-4.5z'/%3E%3C/g%3E%3C/svg%3E");color:var(--text-color);line-height:1.7;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
+header{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(0,0,0,.04);z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 6%}
+.logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.8rem;color:var(--olive-dark);letter-spacing:3px;font-weight:700}
+nav ul{display:flex;list-style:none;gap:2.5rem}
+nav a{text-decoration:none;color:var(--text-color);font-size:.85rem;text-transform:uppercase;letter-spacing:2px;font-weight:500}
+nav a:hover{color:var(--olive-primary)}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:90px 1rem 40px;overflow:hidden;background:linear-gradient(160deg,var(--olive-dark),var(--olive-primary))}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,28,18,.55),rgba(0,0,0,.45) 50%,rgba(20,28,18,.7)),url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat;z-index:1;animation:slowZoom 20s infinite alternate ease-in-out}
+@keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+.hero-content{position:relative;z-index:2}
+.hero h1{font-size:4.8rem;margin-bottom:.5rem;letter-spacing:5px;text-shadow:0 4px 15px rgba(0,0,0,.5)}
+.hero p.d{font-size:1.2rem;letter-spacing:6px;text-transform:uppercase;margin-bottom:2.5rem;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.countdown-container{display:flex;gap:2rem;background:rgba(255,255,255,.18);backdrop-filter:blur(15px);padding:1.5rem 3rem;border-radius:50px;border:1px solid rgba(255,255,255,.35);box-shadow:0 15px 35px rgba(0,0,0,.2);justify-content:center}
+.countdown-item span{display:block;font-size:2.4rem;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700}
+.countdown-item p{font-size:.7rem;letter-spacing:2px;text-transform:uppercase}
+section.s{padding:6rem 10%}
+.section-title{text-align:center;font-size:3rem;color:var(--olive-dark);margin-bottom:3.5rem}
+.section-title::after{content:'♥';display:block;font-size:1.2rem;color:var(--olive-primary);margin-top:10px}
+.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem}
+.card{background:#fff;padding:3rem 2.5rem;border-radius:16px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.03);border-top:5px solid var(--olive-primary);transition:transform .3s}
+.card:hover{transform:translateY(-5px)}
+.card h3{font-size:2rem;color:var(--olive-dark);margin-bottom:1.2rem}
+.card p{color:#555;margin-bottom:.5rem}
+.gift-tabs{display:flex;justify-content:center;gap:1.2rem;margin-bottom:3.5rem;flex-wrap:wrap}
+.tab-btn{padding:.9rem 2.5rem;border:2px solid var(--olive-primary);background:#fff;color:var(--olive-dark);font:500 .9rem 'Montserrat',Arial,sans-serif;border-radius:30px;cursor:pointer;transition:all .3s}
+.tab-btn.active,.tab-btn:hover{background:var(--olive-primary);color:#fff;box-shadow:0 5px 15px rgba(85,107,47,.3)}
+.gift-content{display:none}.gift-content.active{display:block}
+.crazy-gifts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.2rem}
+.gift-card{background:#fff;border-radius:14px;padding:1.5rem;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.04);transition:all .3s;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(85,107,47,.1)}
+.gift-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(0,0,0,.08)}
+.gift-card img{width:100%;height:170px;object-fit:cover;border-radius:10px;margin-bottom:1.2rem}
+.gift-card h4{font-size:1.2rem;color:var(--olive-dark);margin-bottom:.5rem}
+.price{font-weight:700;color:var(--olive-primary);font-size:1.1rem;margin-bottom:1.2rem;display:block}
+.btn-buy{display:inline-block;background:var(--olive-primary);color:#fff;padding:.7rem 1.4rem;border-radius:25px;text-decoration:none;font:500 .85rem 'Montserrat',Arial,sans-serif;cursor:pointer;border:none;transition:all .3s;width:100%}
+.btn-buy:hover{background:var(--olive-dark)}
+.amazon-external-box{background:#fff;text-align:center;padding:5rem 3rem;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.03);max-width:700px;margin:0 auto;border:1px solid rgba(85,107,47,.1)}
+.amazon-external-box p{font-size:1.15rem;color:#555;margin-bottom:2rem}
+.modal{display:none;position:fixed;z-index:2000;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);justify-content:center;align-items:center}
+.modal-content{background:#fff;padding:3rem 2.5rem;border-radius:20px;width:90%;max-width:480px;text-align:center;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.15);max-height:92vh;overflow:auto}
+.close-modal{position:absolute;top:20px;right:25px;font-size:1.8rem;cursor:pointer;color:#aaa}
+.close-modal:hover{color:var(--text-color)}
+.rsvp-form{max-width:650px;margin:0 auto;background:#fff;padding:3.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.03);border:1px solid rgba(85,107,47,.1)}
+.form-group{margin-bottom:1.5rem;text-align:left}
+.form-group label{display:block;margin-bottom:.6rem;font-size:.9rem;font-weight:600;color:var(--olive-dark)}
+.form-group input,.form-group select{width:100%;padding:.9rem 1rem;border:1px solid #ddd;border-radius:8px;font:.95rem 'Montserrat',Arial,sans-serif;background:#FAFAFA}
+.form-group input:focus{outline:none;border-color:var(--olive-primary)}
+.suggestions-box{max-height:150px;overflow-y:auto;border:1px solid #ddd;border-top:none;background:#fff;position:absolute;width:100%;z-index:10;display:none;border-radius:0 0 8px 8px}
+.suggestion-item{padding:.6rem 1rem;cursor:pointer;font-size:.9rem;border-bottom:1px solid #f0f0f0}
+.suggestion-item:hover{background:var(--olive-light);color:var(--olive-dark)}
+.btn-submit{width:100%;background:var(--olive-dark);color:#fff;border:none;padding:1.1rem;font:600 .95rem 'Montserrat',Arial,sans-serif;border-radius:8px;cursor:pointer;transition:background .3s;text-transform:uppercase;letter-spacing:2px;margin-top:1rem}
+.btn-submit:hover{background:var(--olive-primary)}
+.form-group textarea{width:100%;padding:.9rem 1rem;border:1px solid #ddd;border-radius:8px;font:.95rem Montserrat,Arial,sans-serif;background:#FAFAFA;resize:vertical}
+.mapbox{border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06);min-height:300px}.mapbox iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
+footer{text-align:center;padding:3.5rem;background:var(--olive-light);color:var(--olive-dark);font-size:.9rem;letter-spacing:1px}
+@media(max-width:768px){.hero h1{font-size:3rem}.countdown-container{padding:1rem 1.2rem;gap:1rem}.countdown-item span{font-size:1.8rem}
+.logo{display:none}header{padding:.7rem 3%}nav{width:100%;overflow-x:auto}nav ul{gap:1.1rem;justify-content:center;white-space:nowrap}nav a{font-size:.7rem;letter-spacing:1px}
+section.s{padding:4rem 5%}.rsvp-form{padding:2rem 1.3rem}.section-title{font-size:2.3rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">C &amp; D</div>
+  <nav><ul>
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#detalhes">Cerimônia</a></li>
+    <li><a href="#local">Local</a></li>
+    <li><a href="#presentes">Presentes</a></li>
+    <li><a href="#rsvp">Confirmar presença</a></li>
+  </ul></nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Camila &amp; Douglas</h1>
+    <p class="d">13 de Janeiro de 2027</p>
+    <div class="countdown-container">
+      <div class="countdown-item"><span id="days">00</span><p>Dias</p></div>
+      <div class="countdown-item"><span id="hours">00</span><p>Horas</p></div>
+      <div class="countdown-item"><span id="minutes">00</span><p>Minutos</p></div>
+      <div class="countdown-item"><span id="seconds">00</span><p>Segundos</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="detalhes">
+  <h2 class="section-title">Cerimônia</h2>
+  <div class="details-grid">
+    <div class="card">
+      <h3>Data e Horário</h3>
+      <p><strong>Data:</strong> 13 de Janeiro de 2027</p>
+      <p><strong>Horário da cerimônia:</strong> 16h30</p>
+    </div>
+    <div class="card">
+      <h3>Traje</h3>
+      <p><strong>Social</strong></p>
+      <p style="margin-top:1rem;font-size:.9rem;color:#666">Pedimos gentilmente que evitem tons totalmente brancos ou marfim.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="local" style="background:var(--olive-light)">
+  <h2 class="section-title">Local</h2>
+  <div class="details-grid" style="max-width:900px;margin:0 auto">
+    <div class="card" style="display:flex;flex-direction:column;justify-content:center;align-items:center">
+      <h3>Spetaculos Eventos</h3>
+      <p>R. Alexandre Magno, 1005<br>Parque 10 de Novembro<br>Manaus - AM, 69054-273</p>
+      <a class="btn-buy" style="margin-top:1rem;width:auto" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spetaculos+Eventos+R.+Alexandre+Magno+1005+Manaus+AM">Como chegar</a>
+    </div>
+    <div class="mapbox"><iframe title="Mapa do local" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Spetaculos+Eventos+R.+Alexandre+Magno+1005+Manaus+AM&output=embed"></iframe></div>
+  </div>
+</section>
+
+<section class="s" id="presentes">
+  <h2 class="section-title">Lista de Presentes</h2>
+  <div class="gift-tabs">
+    <button class="tab-btn active" onclick="switchTab(event,'maluca')">🌿 Lista Maluca do Casal</button>
+    <button class="tab-btn" onclick="switchTab(event,'amazon')">📦 Lista da Amazon</button>
+  </div>
+  <div id="maluca" class="gift-content active"><div class="crazy-gifts-grid" id="grid"></div></div>
+  <div id="amazon" class="gift-content">
+    <div class="amazon-external-box">
+      <p>Nossa lista de utensílios e casa está na Amazon, para sua maior comodidade e segurança.</p>
+      <a href="https://www.amazon.com.br/hz/wishlist/ls/RSYNM67OPIKF?ref_=wl_share" target="_blank" rel="noopener" class="tab-btn active" style="text-decoration:none;display:inline-block">Acessar Lista na Amazon ↗</a>
+    </div>
+  </div>
+</section>
+
+<div id="pixModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closePixModal()">&times;</span>
+    <h3 id="modalGiftTitle" style="color:var(--olive-dark);margin-bottom:.3rem">Presentear</h3>
+    <p id="modalGiftPrice" style="font-weight:700;color:var(--olive-primary);margin-bottom:1rem;font-size:1.1rem"></p>
+    <p style="font-size:.85rem;color:#666;margin-bottom:1rem">Faça o Pix pelo nosso link do Nubank:</p>
+    <a class="btn-buy" target="_blank" rel="noopener" href="https://nubank.com.br/cobrar/46s99/6ac3d6f8-a3b5-4a90-8a27-a960f5dbddad">Abrir Pix (Nubank)</a>
+    <p style="font-size:.9rem;color:#666;margin-top:1.4rem">Muito obrigado pelo carinho! 💚</p>
+  </div>
+</div>
+
+<section class="s" id="rsvp">
+  <h2 class="section-title">Confirmação de Presença</h2>
+  <div class="rsvp-form">
+    <form onsubmit="confirmar(event)">
+      <div class="form-group" style="position:relative">
+        <label for="buscaNome">Digite seu nome para buscar na lista:</label>
+        <input type="text" id="buscaNome" required placeholder="Comece a digitar seu nome..." autocomplete="off" onkeyup="filtrarConvidados()">
+        <div id="suggestionsBox" class="suggestions-box"></div>
+      </div>
+      <div class="form-group">
+        <label for="status">Você irá comparecer?</label>
+        <select id="status">
+          <option value="Sim, estarei lá!">Sim, estarei lá!</option>
+          <option value="Infelizmente não poderei comparecer">Infelizmente não poderei comparecer</option>
+        </select>
+      </div>
+      <p id="rsvpMsg" style="text-align:center;font-weight:600;color:var(--olive-dark);min-height:1.6em"></p>
+      <button type="submit" class="btn-submit">Confirmar presença</button>
+    </form>
+  </div>
+</section>
+
+<footer><p>Com amor, Camila &amp; Douglas • 2027</p></footer>
+
+<script>
+var EMAILS="Douglasr1.9.f@gmail.com,Camedeiros36@gmail.com";
+// Cole aqui o endereço do Google Apps Script (veja o passo a passo). Enquanto estiver vazio, o site usa a lista abaixo e a confirmação vai por WhatsApp.
+var APPS_URL="https://script.google.com/macros/s/AKfycbzVBPeUsjloq_mBVrU77MHXRE65OOHtRezRU6I6m2WQapUODPGoycYkS9PadP5Rgcki/exec";
+// Lista reserva (usada só se APPS_URL estiver vazio)
+var listaConvidados=["TAMARA FREITAS", "LUIZ PEREIRA", "LUIZA PEREIRA", "DOUGLAS SILVA", "ELOIZA BRITO", "MARIA CLARA", "FABIANE FERREIRA", "JONAS FERREIRA", "EVALDO BARBOSA", "DANIEL FREITAS", "MICHAEL FERREIRA", "ELIZANETE DA SILVA", "EDVALDO GUERREIRO", "ALIETE GUERREIRO", "ANTONIO SILVA", "CHRISTINA GOMES", "PAULO ELMER", "PIETRA SOPHIA", "DEBORA MENDONÇA", "DIEGO PENA", "THAIANE PESSOA", "EMMANUEL MOARES", "CINTHYA MORAES", "GISLENE GUIMARÃES", "RENAN FARIAS", "AMANDA BARROS", "REGILANE CASTELO", "REGIANE CASTELO", "RAIMUNDA CASTELO", "MARCOS PAULO", "GUTIERRE BARROS", "RYAN YURI", "BRUNA GARCIA", "PEDRO RADZINSKY", "VICTÓRIA MARCELLE", "FABIO ARTHUR", "KAROLINE AMARAL", "HANNAH LOUISE", "LIVIA VALENTINA", "GABRIELLI SILVA", "SUSE MARINHO", "NEILON REIS", "GISELLE ARAUJO", "ALFREDO SANTANA", "CLARICE MOARES", "EDUARDO SALERNO", "FELIPE VILELA", "RAYNÁ VALENTE"];
+
+var T=new Date("2027-01-13T16:30:00-04:00").getTime();
+function p(n){return n<10?"0"+n:n}
+function tick(){var d=Math.max(0,T-Date.now());
+ days.innerText=p(Math.floor(d/864e5));hours.innerText=p(Math.floor(d%864e5/36e5));
+ minutes.innerText=p(Math.floor(d%36e5/6e4));seconds.innerText=p(Math.floor(d%6e4/1e3))}
+tick();setInterval(tick,1000);
+
+function switchTab(ev,id){
+ document.querySelectorAll(".gift-content").forEach(function(c){c.classList.remove("active")});
+ document.querySelectorAll(".tab-btn").forEach(function(b){b.classList.remove("active")});
+ document.getElementById(id).classList.add("active");ev.currentTarget.classList.add("active")}
+
+var G=[
+["Vale Açaí com Peixe Frito","100,00","1590080875515-8a3a8dc5735e"],
+["Passeio de Barco no Encontro das Águas","350,00","1507525428034-b723cf961d3e"],
+["Uma Volta na Ponta Negra com X-Caboquinho","120,00","1519046904884-53103b34b206"],
+["Tacacá no Largo de São Sebastião","100,00","1569718212165-3a8278d5f624"],
+["Curso Avançado de Paciência","150,00","1434030216411-0b793f4b4173"],
+["1ª Sessão de Terapia Pós-DR","250,00","1573497019940-1c28c88b4f3e"],
+["Resgate do Robô Aspirador Fugitivo","300,00","1518770660439-4636190af475"],
+["Fundo de Emergência para Pizza de Sábado","120,00","1513151233558-d860c5398176"],
+["Cota de Brigadeiro Antiestresse","100,00","1541781774459-bb2af2f05b55"],
+["Seguro Arranhão de Sofá / Pet","150,00","1543466835-00a7907e9de1"],
+["Vale-Silêncio em Dia de Jogo de Futebol","100,00","1511512578047-dfb367046420"],
+["Taxa de Consultoria \"No meu tempo era assim\"","200,00","1544717305-2782549b5136"]];
+var cur={n:"",v:""};
+G.forEach(function(g,i){
+ var d=document.createElement("div");d.className="gift-card";
+ d.innerHTML='<img src="https://images.unsplash.com/photo-'+g[2]+'?auto=format&fit=crop&w=500&q=80" alt="" loading="lazy" onerror="this.style.display=\'none\'"><div><h4>'+g[0]+'</h4><span class="price">R$ '+g[1]+'</span></div><button class="btn-buy" data-i="'+i+'">Presentear com Pix</button>';
+ grid.appendChild(d)});
+grid.onclick=function(e){var i=e.target.getAttribute("data-i");if(i===null)return;
+ cur={n:G[i][0],v:G[i][1]};modalGiftTitle.innerText=cur.n;modalGiftPrice.innerText="Valor sugerido: R$ "+cur.v;
+ pixModal.style.display="flex"};
+function closePixModal(){pixModal.style.display="none"}
+window.onclick=function(e){if(e.target==pixModal)closePixModal()};
+
+function norm(t){return t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
+function filtrarConvidados(){
+ var f=norm(buscaNome.value),box=suggestionsBox;box.innerHTML="";
+ if(!f){box.style.display="none";return}
+ var m=listaConvidados.filter(function(n){return norm(n).indexOf(f)>-1});
+ if(!m.length){box.style.display="none";return}
+ box.style.display="block";
+ m.forEach(function(n){var d=document.createElement("div");d.className="suggestion-item";d.innerText=n;
+  d.onclick=function(){buscaNome.value=n;box.style.display="none"};box.appendChild(d)})}
+document.addEventListener("click",function(e){if(!e.target.closest("#buscaNome")&&!e.target.closest("#suggestionsBox"))suggestionsBox.style.display="none"});
+
+function carregar(){if(!APPS_URL)return;fetch(APPS_URL+"?action=lista").then(function(r){return r.json()}).then(function(d){if(d.nomes&&d.nomes.length)listaConvidados=d.nomes}).catch(function(){})}
+carregar();
+function confirmar(e){e.preventDefault();
+ var n=buscaNome.value,st=document.getElementById("status").value,sim=st.indexOf("Sim")===0,m=document.getElementById("rsvpMsg");
+ if(!APPS_URL){window.open("https://api.whatsapp.com/send?phone=5592988251327&text="+encodeURIComponent("Olá! Meu nome é *"+n+"* e estou respondendo o convite do casamento de Camila & Douglas.\n\nStatus da minha presença: *"+st+"*"),"_blank");return}
+ m.textContent="Enviando...";
+ fetch(APPS_URL+"?action=confirmar&nome="+encodeURIComponent(n)+"&status="+(sim?"sim":"nao")).then(function(r){return r.json()}).then(function(d){
+  m.textContent=d.ok?(sim?"Presença confirmada! Obrigado 💚":"Resposta registrada. Sentiremos sua falta!"):"Não encontramos esse nome. Escolha seu nome nas sugestões."}).catch(function(){m.textContent="Erro de conexão. Tente de novo."})}
+</script>
+</body>
+</html>
