@@ -16,11 +16,11 @@ nav ul{display:flex;list-style:none;gap:2.5rem}
 nav a{text-decoration:none;color:var(--text-color);font-size:.85rem;text-transform:uppercase;letter-spacing:2px;font-weight:500}
 nav a:hover{color:var(--olive-primary)}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:90px 1rem 40px;overflow:hidden;background:linear-gradient(160deg,var(--olive-dark),var(--olive-primary))}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,28,18,.55),rgba(0,0,0,.45) 50%,rgba(20,28,18,.7)),url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat;z-index:1;animation:slowZoom 20s infinite alternate ease-in-out}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 25%,rgba(255,255,255,.14),transparent 60%);z-index:1}
 @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
 .hero-content{position:relative;z-index:2}
 .hero h1{font-size:4.8rem;margin-bottom:.5rem;letter-spacing:5px;text-shadow:0 4px 15px rgba(0,0,0,.5)}
-.hero p.d{font-size:1.2rem;letter-spacing:6px;text-transform:uppercase;margin-bottom:2.5rem;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.hero p.d{font-size:1.2rem;letter-spacing:6px;text-transform:uppercase;margin-bottom:1rem;text-shadow:0 2px 10px rgba(0,0,0,.5)}
 .countdown-container{display:flex;gap:2rem;background:rgba(255,255,255,.18);backdrop-filter:blur(15px);padding:1.5rem 3rem;border-radius:50px;border:1px solid rgba(255,255,255,.35);box-shadow:0 15px 35px rgba(0,0,0,.2);justify-content:center}
 .countdown-item span{display:block;font-size:2.4rem;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700}
 .countdown-item p{font-size:.7rem;letter-spacing:2px;text-transform:uppercase}
@@ -39,6 +39,8 @@ section.s{padding:6rem 10%}
 .crazy-gifts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.2rem}
 .gift-card{background:#fff;border-radius:14px;padding:1.5rem;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.04);transition:all .3s;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(85,107,47,.1)}
 .gift-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(0,0,0,.08)}
+.gi{height:170px;display:flex;align-items:center;justify-content:center;background:var(--olive-light);border-radius:10px;margin-bottom:1.2rem}
+.couple{width:min(340px,82vw);height:auto;display:block;margin:0 auto 1.4rem}
 .gift-card img{width:100%;height:170px;object-fit:cover;border-radius:10px;margin-bottom:1.2rem}
 .gift-card h4{font-size:1.2rem;color:var(--olive-dark);margin-bottom:.5rem}
 .price{font-weight:700;color:var(--olive-primary);font-size:1.1rem;margin-bottom:1.2rem;display:block}
@@ -66,6 +68,13 @@ footer{text-align:center;padding:3.5rem;background:var(--olive-light);color:var(
 @media(max-width:768px){.hero h1{font-size:3rem}.countdown-container{padding:1rem 1.2rem;gap:1rem}.countdown-item span{font-size:1.8rem}
 .logo{display:none}header{padding:.7rem 3%}nav{width:100%;overflow-x:auto}nav ul{gap:1.1rem;justify-content:center;white-space:nowrap}nav a{font-size:.7rem;letter-spacing:1px}
 section.s{padding:4rem 5%}.rsvp-form{padding:2rem 1.3rem}.section-title{font-size:2.3rem}}
+.couple.emblem{width:min(300px,76vw);animation:cpop 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes cpop{from{opacity:0;transform:scale(.8) rotate(-8deg)}}
+@keyframes cup{from{opacity:0;transform:translateY(24px)}}
+.hero h1{animation:cup 1s .35s both}.hero p.d{animation:cup 1s .55s both}.countdown-container{animation:cup 1s .75s both}
+.pt{position:absolute;top:-24px;border-radius:80% 0 80% 0;background:rgba(255,255,255,.4);animation:pfall linear infinite;pointer-events:none}
+@keyframes pfall{0%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(28px,55vh,0) rotate(180deg)}100%{transform:translate3d(-14px,112vh,0) rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.couple.emblem,.hero h1,.hero p.d,.countdown-container{animation:none}.pt{display:none}}
 </style>
 </head>
 <body>
@@ -85,6 +94,28 @@ section.s{padding:4rem 5%}.rsvp-form{padding:2rem 1.3rem}.section-title{font-siz
   <div class="hero-content">
     <h1>Camila &amp; Douglas</h1>
     <p class="d">13 de Janeiro de 2027</p>
+<svg class="couple emblem" viewBox="0 0 300 300" role="img" aria-label="Monograma C e D com ramos de oliveira">
+<style>
+.em-spin{animation:emspin 60s linear infinite;transform-origin:150px 150px}
+@keyframes emspin{to{transform:rotate(360deg)}}
+.em-tw{animation:emtw 3s ease-in-out infinite}
+@keyframes emtw{0%,100%{opacity:.15}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.em-spin,.em-tw{animation:none}}
+</style>
+<defs><radialGradient id="emg" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="rgba(255,255,255,.22)"/><stop offset="1" stop-color="rgba(255,255,255,.04)"/></radialGradient>
+<path id="emp" d="M150 150m-124 0a124 124 0 1 1 248 0a124 124 0 1 1 -248 0"/></defs>
+<circle cx="150" cy="150" r="146" fill="url(#emg)" stroke="#e3cf9f" stroke-opacity=".7" stroke-width="1.5"/>
+<circle cx="150" cy="150" r="104" fill="none" stroke="#e3cf9f" stroke-opacity=".35" stroke-width="1"/>
+<g class="em-spin"><text font-family="Cormorant Garamond,Georgia,serif" font-size="15" font-weight="600" letter-spacing="5.2" fill="#f1dca0"><textPath href="#emp" startOffset="0">CAMILA ♥ DOUGLAS • 13 · 01 · 2027 • MANAUS · AM • ♥ •</textPath></text></g>
+<path d="M134.0 240.6 L126.2 238.9 L118.5 236.5 L111.1 233.4 L104.0 229.7 L97.2 225.4 L90.9 220.5 L84.9 215.1 L79.5 209.1 L74.6 202.8 L70.3 196.0 L66.6 188.9 L63.5 181.5 L61.1 173.8 L59.4 166.0 L58.4 158.0 L58.0 150.0 L58.4 142.0 L59.4 134.0 L61.1 126.2 L63.5 118.5 L66.6 111.1 L70.3 104.0 L74.6 97.2 L79.5 90.9 L84.9 84.9 L90.9 79.5 L97.2 74.6 L104.0 70.3 L111.1 66.6 L118.5 63.5" fill="none" stroke="#cfd8a0" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M166.0 240.6 L173.8 238.9 L181.5 236.5 L188.9 233.4 L196.0 229.7 L202.8 225.4 L209.1 220.5 L215.1 215.1 L220.5 209.1 L225.4 202.8 L229.7 196.0 L233.4 188.9 L236.5 181.5 L238.9 173.8 L240.6 166.0 L241.6 158.0 L242.0 150.0 L241.6 142.0 L240.6 134.0 L238.9 126.2 L236.5 118.5 L233.4 111.1 L229.7 104.0 L225.4 97.2 L220.5 90.9 L215.1 84.9 L209.1 79.5 L202.8 74.6 L196.0 70.3 L188.9 66.6 L181.5 63.5" fill="none" stroke="#cfd8a0" stroke-width="2.2" stroke-linecap="round"/>
+<ellipse cx="132.8" cy="247.5" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(228 132.8 247.5)"/><ellipse cx="135.2" cy="233.7" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(152 135.2 233.7)"/><ellipse cx="115.0" cy="242.6" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(239 115.0 242.6)"/><ellipse cx="119.9" cy="229.5" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(163 119.9 229.5)"/><ellipse cx="98.4" cy="234.5" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(249 98.4 234.5)"/><ellipse cx="105.7" cy="222.5" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(173 105.7 222.5)"/><circle cx="97.3" cy="236.2" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/><ellipse cx="83.6" cy="223.4" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(260 83.6 223.4)"/><ellipse cx="93.0" cy="213.0" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(184 93.0 213.0)"/><ellipse cx="71.1" cy="209.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(271 71.1 209.8)"/><ellipse cx="82.2" cy="201.3" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(195 82.2 201.3)"/><ellipse cx="61.3" cy="194.1" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(282 61.3 194.1)"/><ellipse cx="73.9" cy="187.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(206 73.9 187.8)"/><ellipse cx="54.7" cy="176.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(292 54.7 176.8)"/><ellipse cx="68.2" cy="173.0" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(216 68.2 173.0)"/><circle cx="52.8" cy="177.4" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/><ellipse cx="51.4" cy="158.6" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(303 51.4 158.6)"/><ellipse cx="65.3" cy="157.4" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(227 65.3 157.4)"/><ellipse cx="51.5" cy="140.1" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(314 51.5 140.1)"/><ellipse cx="65.4" cy="141.5" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(238 65.4 141.5)"/><ellipse cx="55.0" cy="122.0" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(324 55.0 122.0)"/><ellipse cx="68.5" cy="126.0" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(248 68.5 126.0)"/><ellipse cx="61.9" cy="104.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(335 61.9 104.8)"/><ellipse cx="74.4" cy="111.2" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(259 74.4 111.2)"/><circle cx="60.1" cy="103.9" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/><ellipse cx="71.8" cy="89.2" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(346 71.8 89.2)"/><ellipse cx="82.9" cy="97.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(270 82.9 97.8)"/><ellipse cx="84.5" cy="75.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(357 84.5 75.8)"/><ellipse cx="93.8" cy="86.3" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(281 93.8 86.3)"/><ellipse cx="99.4" cy="64.9" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(367 99.4 64.9)"/><ellipse cx="106.6" cy="76.9" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(291 106.6 76.9)"/><ellipse cx="116.1" cy="57.0" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(378 116.1 57.0)"/><ellipse cx="120.9" cy="70.1" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(302 120.9 70.1)"/><circle cx="115.5" cy="55.1" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/><ellipse cx="167.2" cy="247.5" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(208 167.2 247.5)"/><ellipse cx="164.8" cy="233.7" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(132 164.8 233.7)"/><ellipse cx="185.0" cy="242.6" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(197 185.0 242.6)"/><ellipse cx="180.1" cy="229.5" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(121 180.1 229.5)"/><ellipse cx="201.6" cy="234.5" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(187 201.6 234.5)"/><ellipse cx="194.3" cy="222.5" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(111 194.3 222.5)"/><circle cx="202.7" cy="236.2" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/><ellipse cx="216.4" cy="223.4" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(176 216.4 223.4)"/><ellipse cx="207.0" cy="213.0" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(100 207.0 213.0)"/><ellipse cx="228.9" cy="209.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(165 228.9 209.8)"/><ellipse cx="217.8" cy="201.3" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(89 217.8 201.3)"/><ellipse cx="238.7" cy="194.1" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(154 238.7 194.1)"/><ellipse cx="226.1" cy="187.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(78 226.1 187.8)"/><ellipse cx="245.3" cy="176.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(144 245.3 176.8)"/><ellipse cx="231.8" cy="173.0" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(68 231.8 173.0)"/><circle cx="247.2" cy="177.4" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/><ellipse cx="248.6" cy="158.6" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(133 248.6 158.6)"/><ellipse cx="234.7" cy="157.4" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(57 234.7 157.4)"/><ellipse cx="248.5" cy="140.1" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(122 248.5 140.1)"/><ellipse cx="234.6" cy="141.5" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(46 234.6 141.5)"/><ellipse cx="245.0" cy="122.0" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(112 245.0 122.0)"/><ellipse cx="231.5" cy="126.0" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(36 231.5 126.0)"/><ellipse cx="238.1" cy="104.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(101 238.1 104.8)"/><ellipse cx="225.6" cy="111.2" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(25 225.6 111.2)"/><circle cx="239.9" cy="103.9" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/><ellipse cx="228.2" cy="89.2" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(90 228.2 89.2)"/><ellipse cx="217.1" cy="97.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(14 217.1 97.8)"/><ellipse cx="215.5" cy="75.8" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(79 215.5 75.8)"/><ellipse cx="206.2" cy="86.3" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(3 206.2 86.3)"/><ellipse cx="200.6" cy="64.9" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(69 200.6 64.9)"/><ellipse cx="193.4" cy="76.9" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(-7 193.4 76.9)"/><ellipse cx="183.9" cy="57.0" rx="11" ry="4.4" fill="#b7c27a" transform="rotate(58 183.9 57.0)"/><ellipse cx="179.1" cy="70.1" rx="11" ry="4.4" fill="#8fa04f" transform="rotate(-18 179.1 70.1)"/><circle cx="184.5" cy="55.1" r="3.2" fill="#6b7035" stroke="#e3cf9f" stroke-width=".8"/>
+<text x="104" y="172" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="74" font-weight="600" fill="#fff">C</text>
+<text x="196" y="172" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="74" font-weight="600" fill="#fff">D</text>
+<text x="150" y="162" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="40" font-style="italic" fill="#f1dca0">&amp;</text>
+<g fill="none" stroke="#f1dca0" stroke-width="2.4"><circle cx="141" cy="198" r="11"/><circle cx="159" cy="198" r="11"/></g>
+<g fill="#f1dca0"><path class="em-tw" d="M60 70l2.5 6l6 2.5l-6 2.5l-2.5 6l-2.5-6l-6-2.5l6-2.5z"/><path class="em-tw" style="animation-delay:1s" d="M244 96l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2z"/><path class="em-tw" style="animation-delay:2s" d="M236 232l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2z"/><path class="em-tw" style="animation-delay:.5s" d="M68 220l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2z"/></g>
+</svg>
     <div class="countdown-container">
       <div class="countdown-item"><span id="days">00</span><p>Dias</p></div>
       <div class="countdown-item"><span id="hours">00</span><p>Horas</p></div>
@@ -101,11 +132,13 @@ section.s{padding:4rem 5%}.rsvp-form{padding:2rem 1.3rem}.section-title{font-siz
       <h3>Data e Horário</h3>
       <p><strong>Data:</strong> 13 de Janeiro de 2027</p>
       <p><strong>Horário da cerimônia:</strong> 16h30</p>
+      <p style="margin-top:1rem">A cerimônia e a celebração acontecerão no mesmo local.</p>
+      <p style="margin-top:.8rem;font-size:.95rem">Contamos com a sua presença desde o primeiro momento! Pedimos a gentileza de chegarem pontualmente, para que possamos celebrar cada instante juntos.</p>
     </div>
     <div class="card">
-      <h3>Dress Code</h3>
+      <h3>Traje</h3>
       <p><strong>Social</strong></p>
-      <p style="margin-top:1rem;font-size:.9rem;color:#666">Pedimos gentilmente que evitem tons totalmente brancos ou marfim.</p>
+      <p style="margin-top:1rem;font-size:.9rem;color:#666">Pedimos gentilmente que evitem tons de branco e marfim. A paleta verde-oliva será reservada aos padrinhos.</p>
     </div>
   </div>
 </section>
@@ -177,7 +210,7 @@ var EMAILS="Douglasr1.9.f@gmail.com,Camedeiros36@gmail.com";
 // Cole aqui o endereço do Google Apps Script (veja o passo a passo). Enquanto estiver vazio, o site usa a lista abaixo e a confirmação vai por WhatsApp.
 var APPS_URL="https://script.google.com/macros/s/AKfycbzVBPeUsjloq_mBVrU77MHXRE65OOHtRezRU6I6m2WQapUODPGoycYkS9PadP5Rgcki/exec";
 // Lista reserva (usada só se APPS_URL estiver vazio)
-var listaConvidados=["TAMARA FREITAS", "LUIZ PEREIRA", "LUIZA PEREIRA", "DOUGLAS SILVA", "ELOIZA BRITO", "MARIA CLARA", "FABIANE FERREIRA", "JONAS FERREIRA", "EVALDO BARBOSA", "DANIEL FREITAS", "MICHAEL FERREIRA", "ELIZANETE DA SILVA", "EDVALDO GUERREIRO", "ALIETE GUERREIRO", "ANTONIO SILVA", "CHRISTINA GOMES", "PAULO ELMER", "PIETRA SOPHIA", "DEBORA MENDONÇA", "DIEGO PENA", "THAIANE PESSOA", "EMMANUEL MOARES", "CINTHYA MORAES", "GISLENE GUIMARÃES", "RENAN FARIAS", "AMANDA BARROS", "REGILANE CASTELO", "REGIANE CASTELO", "RAIMUNDA CASTELO", "MARCOS PAULO", "GUTIERRE BARROS", "RYAN YURI", "BRUNA GARCIA", "PEDRO RADZINSKY", "VICTÓRIA MARCELLE", "FABIO ARTHUR", "KAROLINE AMARAL", "HANNAH LOUISE", "LIVIA VALENTINA", "GABRIELLI SILVA", "SUSE MARINHO", "NEILON REIS", "GISELLE ARAUJO", "ALFREDO SANTANA", "CLARICE MOARES", "EDUARDO SALERNO", "FELIPE VILELA", "RAYNÁ VALENTE"];
+var listaConvidados=["TAMARA FREITAS", "LUIZ PEREIRA", "LUIZA PEREIRA", "DOUGLAS SILVA", "ELOIZA BRITO", "MARIA CLARA", "FABIANE FERREIRA", "JONAS FERREIRA", "EVALDO BARBOSA", "DANIEL FREITAS", "MICHAEL FERREIRA", "ELIZANETE DA SILVA", "EDVALDO GUERREIRO", "ALIETE GUERREIRO", "ANTONIO SILVA", "CHRISTINA GOMES", "PAULO ELMER", "PIETRA SOPHIA", "DEBORA MENDONÇA", "DIEGO PENA", "THAIANE PESSOA", "EMMANUEL MOARES", "CINTHYA MORAES", "GISLENE GUIMARÃES", "RENAN FARIAS", "AMANDA BARROS", "REGILANE CASTELO", "REGIANE CASTELO", "RAIMUNDA CASTELO", "MARCOS PAULO", "GUTIERRE BARROS", "RYAN YURI", "BRUNA GARCIA", "PEDRO RADZINSKY", "VICTÓRIA MARCELLE", "FABIO ARTHUR", "KAROLINE AMARAL", "HANNAH LOUISE", "LIVIA VALENTINA", "GABRIELLI SILVA", "SUSE MARINHO", "NEILON REIS", "GISELLE ARAUJO", "ALFREDO SANTANA", "CLARICE MOARES", "EDUARDO SALERNO", "FELIPE VILELA", "RAYNÁ VALENTE","YASMYM MACIEL","JEAN FACCIO","MARCUS RAFAEL","KARINE ANDREZA","BERENICE BITTENCOURT","ADIRLEY LOPES","LORENA AGUIAR"];
 
 var T=new Date("2027-01-13T16:30:00-04:00").getTime();
 function p(n){return n<10?"0"+n:n}
@@ -201,13 +234,27 @@ var G=[
 ["Resgate do Robô Aspirador Fugitivo","300,00","1518770660439-4636190af475"],
 ["Fundo de Emergência para Pizza de Sábado","120,00","1513151233558-d860c5398176"],
 ["Cota de Brigadeiro Antiestresse","100,00","1541781774459-bb2af2f05b55"],
-["Seguro Arranhão de Sofá / Pet","150,00","1543466835-00a7907e9de1"],
 ["Vale-Silêncio em Dia de Jogo de Futebol","100,00","1511512578047-dfb367046420"],
 ["Taxa de Consultoria \"No meu tempo era assim\"","200,00","1544717305-2782549b5136"]];
+function sv(x){return '<svg viewBox="0 0 100 100" width="120" height="120" fill="none" stroke="#38461E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true">'+x+'</svg>'}
+var ICONS=[
+sv('<path d="M15 52h70a35 33 0 0 1-70 0z" fill="#6b3a7d"/><path d="M28 52q22-12 44 0" fill="#e9c46a"/><ellipse cx="50" cy="36" rx="15" ry="8" fill="#f4a261"/><path d="M65 36l12-8v16z" fill="#f4a261"/><circle cx="42" cy="34" r="1.5" fill="#222"/>'),
+sv('<circle cx="76" cy="24" r="10" fill="#f4c26b"/><path d="M18 62h64l-10 15H28z" fill="#556B2F"/><path d="M50 18v44" /><path d="M50 20l24 34H50z" fill="#fff"/><path d="M8 86q10-8 21 0t21 0t21 0t21 0" stroke="#5a9bd4"/>'),
+sv('<circle cx="72" cy="34" r="13" fill="#f4a261"/><rect x="6" y="72" width="88" height="20" fill="#7fb7d6" stroke="none"/><path d="M34 78q5-26 0-42" stroke="#8b5a2b" stroke-width="4"/><path d="M34 36q-20-6-26 6M34 36q-14-16-28-8M34 36q14-16 28-8M34 36q20 0 25 12" stroke="#556B2F" stroke-width="4"/>'),
+sv('<path d="M38 40q-6-8 0-16M52 40q-6-8 0-16M66 40q-6-8 0-16" stroke="#999"/><path d="M14 52h72a36 32 0 0 1-72 0z" fill="#556B2F"/><ellipse cx="50" cy="52" rx="36" ry="7" fill="#e9c46a"/>'),
+sv('<path d="M28 14h44M28 86h44"/><path d="M33 14q0 32 17 36q-17 4-17 36M67 14q0 32-17 36q17 4 17 36"/><path d="M38 78q12-14 24 0z" fill="#e9c46a"/><path d="M38 20h24q-6 14-12 18q-6-4-12-18z" fill="#e9c46a"/>'),
+sv('<rect x="10" y="18" width="52" height="36" rx="10" fill="#fff"/><path d="M24 54l-4 12l16-12" fill="#fff"/><path d="M36 44l-10-10a6 6 0 0 1 10-7a6 6 0 0 1 10 7z" fill="#d1495b" stroke="#d1495b"/><rect x="42" y="50" width="48" height="32" rx="10" fill="#556B2F"/><path d="M82 82l6 10l-16-10" fill="#556B2F"/>'),
+sv('<circle cx="50" cy="52" r="34" fill="#cfd8c0"/><circle cx="50" cy="52" r="22" fill="#fff"/><circle cx="42" cy="48" r="3" fill="#222"/><circle cx="58" cy="48" r="3" fill="#222"/><path d="M42 60q8 7 16 0"/><path d="M50 18v-8M44 10h12"/><path d="M8 84h14M78 84h14" stroke="#999"/>'),
+sv('<path d="M50 90L14 24q36-16 72 0z" fill="#f4c26b"/><path d="M14 24q36-16 72 0" stroke="#c98a3c" stroke-width="7"/><circle cx="40" cy="42" r="6" fill="#d1495b"/><circle cx="60" cy="48" r="6" fill="#d1495b"/><circle cx="50" cy="68" r="5" fill="#d1495b"/>'),
+sv('<circle cx="32" cy="46" r="15" fill="#5a3825"/><circle cx="68" cy="46" r="15" fill="#5a3825"/><circle cx="50" cy="68" r="15" fill="#5a3825"/><path d="M26 40h3M36 52h3M64 38h3M72 52h3M44 64h3M54 74h3" stroke="#fff" stroke-width="2.5"/>'),
+sv('<path d="M22 40l-6-22l20 10M78 40l6-22l-20 10"  fill="#f4a261"/><circle cx="50" cy="55" r="30" fill="#f4a261"/><circle cx="40" cy="50" r="3" fill="#222"/><circle cx="60" cy="50" r="3" fill="#222"/><path d="M46 60h8l-4 5z" fill="#d1495b" stroke="#d1495b"/><path d="M8 58h20M8 66l18-4M92 58H72M92 66l-18-4"/>'),
+sv('<circle cx="40" cy="58" r="28" fill="#fff"/><path d="M40 46l11 8l-4 13H33l-4-13z" fill="#38461E"/><rect x="58" y="10" width="36" height="24" rx="8" fill="#fff"/><text x="76" y="27" font-size="14" text-anchor="middle" fill="#38461E" stroke="none" font-family="Arial" font-weight="700">shh</text>'),
+sv('<circle cx="50" cy="26" r="12" fill="#cfcfcf"/><circle cx="32" cy="60" r="16" fill="#fff"/><circle cx="68" cy="60" r="16" fill="#fff"/><path d="M48 58q2-4 4 0M16 56L8 48M84 56l8-8"/><path d="M26 82q24 10 48 0" stroke="#d1495b"/>')
+];
 var cur={n:"",v:""};
 G.forEach(function(g,i){
  var d=document.createElement("div");d.className="gift-card";
- d.innerHTML='<img src="https://images.unsplash.com/photo-'+g[2]+'?auto=format&fit=crop&w=500&q=80" alt="" loading="lazy" onerror="this.style.display=\'none\'"><div><h4>'+g[0]+'</h4><span class="price">R$ '+g[1]+'</span></div><button class="btn-buy" data-i="'+i+'">Presentear com Pix</button>';
+ d.innerHTML='<div class="gi">'+ICONS[i]+'</div><div><h4>'+g[0]+'</h4><span class="price">R$ '+g[1]+'</span></div><button class="btn-buy" data-i="'+i+'">Presentear com Pix</button>';
  grid.appendChild(d)});
 grid.onclick=function(e){var i=e.target.getAttribute("data-i");if(i===null)return;
  cur={n:G[i][0],v:G[i][1]};modalGiftTitle.innerText=cur.n;modalGiftPrice.innerText="Valor sugerido: R$ "+cur.v;
@@ -234,6 +281,9 @@ function confirmar(e){e.preventDefault();
  m.textContent="Enviando...";
  fetch(APPS_URL+"?action=confirmar&nome="+encodeURIComponent(n)+"&status="+(sim?"sim":"nao")).then(function(r){return r.json()}).then(function(d){
   m.textContent=d.ok?(sim?"Presença confirmada! Obrigado 💚":"Resposta registrada. Sentiremos sua falta!"):"Não encontramos esse nome. Escolha seu nome nas sugestões."}).catch(function(){m.textContent="Erro de conexão. Tente de novo."})}
+(function(){var b=document.querySelector(".hero-bg");if(!b)return;
+ for(var i=0;i<22;i++){var e=document.createElement("span");e.className="pt";var w=6+Math.random()*9;
+  e.style.cssText="left:"+(Math.random()*100)+"%;width:"+w+"px;height:"+(w*1.4)+"px;opacity:"+(.25+Math.random()*.5)+";animation-duration:"+(9+Math.random()*9)+"s;animation-delay:-"+(Math.random()*14)+"s";b.appendChild(e)}})();
 </script>
 </body>
 </html>
