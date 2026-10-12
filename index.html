@@ -8,7 +8,7 @@
 <!-- Meta Tags Open Graph para Redes Sociais / WhatsApp -->
 <meta property="og:title" content="Camila & Douglas - Nosso Casamento" />
 <meta property="og:description" content="Venha celebrar este momento especial com a gente! Confira os detalhes, local, lista de presentes e confirme sua presença." />
-<meta property="og:image" content="Casamento.jpeg" />
+<meta property="og:image" content="https://douglasr19f-coder.github.io/CasamentoDouglaseCamila/Casamento.jpeg" />
 <meta property="og:url" content="https://douglasr19f-coder.github.io/CasamentoDouglaseCamila/" />
 <meta property="og:type" content="website" />
 
@@ -285,7 +285,7 @@ function confirmar(e){e.preventDefault();
  var n=buscaNome.value,st=document.getElementById("status").value,sim=st.indexOf("Sim")===0,m=document.getElementById("rsvpMsg");
  if(!APPS_URL){window.open("https://api.whatsapp.com/send?phone=5592988251327&text="+encodeURIComponent("Olá! Meu nome é *"+n+"* e estou respondendo o convite do casamento de Camila & Douglas.\n\nStatus da minha presença: *"+st+"*"),"_blank");return}
  m.textContent="Enviando...";
- fetch(APPS_URL+"?action=confirmar&nome="+encodeURIComponent(n)+"&status="+(sim?"sim":"nao")).then(function(r){return r.json()}.then(function(d){
+ fetch(APPS_URL+"?action=confirmar&nome="+encodeURIComponent(n)+"&status="+(sim?"sim":"nao")).then(function(r){return r.json()}).then(function(d){
   m.textContent=d.ok?(sim?"Presença confirmada! Obrigado 💚":"Resposta registrada. Sentiremos sua falta!"):"Não encontramos esse nome. Escolha seu nome nas sugestões."}).catch(function(){m.textContent="Erro de conexão. Tente de novo."})}
 (function(){var b=document.querySelector(".hero-bg");if(!b)return;
  for(var i=0;i<22;i++){var e=document.createElement("span");e.className="pt";var w=6+Math.random()*9;
