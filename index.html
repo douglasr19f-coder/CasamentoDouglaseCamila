@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Camila & Douglas - Nosso Casamento</title>
+
+<!-- Meta Tags Open Graph para Redes Sociais / WhatsApp -->
+<meta property="og:title" content="Camila & Douglas - Nosso Casamento" />
+<meta property="og:description" content="Venha celebrar este momento especial com a gente! Confira os detalhes, local, lista de presentes e confirme sua presença." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" />
+<meta property="og:url" content="https://douglasr19f-coder.github.io/CasamentoDouglaseCamila/" />
+<meta property="og:type" content="website" />
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--white:#fff;--olive-light:#F0F4EE;--olive-primary:#556B2F;--olive-dark:#38461E;--text-color:#2C332A}
@@ -206,9 +214,7 @@ section.s{padding:4rem 5%}.rsvp-form{padding:2rem 1.3rem}.section-title{font-siz
 
 <script>
 var EMAILS="Douglasr1.9.f@gmail.com,Camedeiros36@gmail.com";
-// Cole aqui o endereço do Google Apps Script (veja o passo a passo). Enquanto estiver vazio, o site usa a lista abaixo e a confirmação vai por WhatsApp.
 var APPS_URL="https://script.google.com/macros/s/AKfycbzVBPeUsjloq_mBVrU77MHXRE65OOHtRezRU6I6m2WQapUODPGoycYkS9PadP5Rgcki/exec";
-// Lista reserva (usada só se APPS_URL estiver vazio)
 var listaConvidados=["TAMARA FREITAS", "LUIZ PEREIRA", "LUIZA PEREIRA", "DOUGLAS SILVA", "ELOIZA BRITO", "MARIA CLARA", "FABIANE FERREIRA", "JONAS FERREIRA", "EVALDO BARBOSA", "DANIEL FREITAS", "MICHAEL FERREIRA", "ELIZANETE DA SILVA", "EDVALDO GUERREIRO", "ALIETE GUERREIRO", "ANTONIO SILVA", "CHRISTINA GOMES", "PAULO ELMER", "PIETRA SOPHIA", "DEBORA MENDONÇA", "DIEGO PENA", "THAIANE PESSOA", "EMMANUEL MOARES", "CINTHYA MORAES", "GISLENE GUIMARÃES", "RENAN FARIAS", "AMANDA BARROS", "REGILANE CASTELO", "REGIANE CASTELO", "RAIMUNDA CASTELO", "MARCOS PAULO", "GUTIERRE BARROS", "RYAN YURI", "BRUNA GARCIA", "PEDRO RADZINSKY", "VICTÓRIA MARCELLE", "FABIO ARTHUR", "KAROLINE AMARAL", "HANNAH LOUISE", "LIVIA VALENTINA", "GABRIELLI SILVA", "SUSE MARINHO", "NEILON REIS", "GISELLE ARAUJO", "ALFREDO SANTANA", "CLARICE MOARES", "EDUARDO SALERNO", "FELIPE VILELA", "RAYNÁ VALENTE","YASMYM MACIEL","JEAN FACCIO","MARCUS RAFAEL","KARINE ANDREZA","BERENICE BITTENCOURT","ADIRLEY LOPES","LORENA AGUIAR"];
 
 var T=new Date("2027-01-13T16:30:00-04:00").getTime();
@@ -279,7 +285,7 @@ function confirmar(e){e.preventDefault();
  var n=buscaNome.value,st=document.getElementById("status").value,sim=st.indexOf("Sim")===0,m=document.getElementById("rsvpMsg");
  if(!APPS_URL){window.open("https://api.whatsapp.com/send?phone=5592988251327&text="+encodeURIComponent("Olá! Meu nome é *"+n+"* e estou respondendo o convite do casamento de Camila & Douglas.\n\nStatus da minha presença: *"+st+"*"),"_blank");return}
  m.textContent="Enviando...";
- fetch(APPS_URL+"?action=confirmar&nome="+encodeURIComponent(n)+"&status="+(sim?"sim":"nao")).then(function(r){return r.json()}).then(function(d){
+ fetch(APPS_URL+"?action=confirmar&nome="+encodeURIComponent(n)+"&status="+(sim?"sim":"nao")).then(function(r){return r.json()}.then(function(d){
   m.textContent=d.ok?(sim?"Presença confirmada! Obrigado 💚":"Resposta registrada. Sentiremos sua falta!"):"Não encontramos esse nome. Escolha seu nome nas sugestões."}).catch(function(){m.textContent="Erro de conexão. Tente de novo."})}
 (function(){var b=document.querySelector(".hero-bg");if(!b)return;
  for(var i=0;i<22;i++){var e=document.createElement("span");e.className="pt";var w=6+Math.random()*9;
