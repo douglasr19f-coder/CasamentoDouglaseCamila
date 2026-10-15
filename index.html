@@ -62,6 +62,11 @@ section.s{padding:6rem 10%}
 .amazon-external-box p{font-size:1.15rem;color:#555;margin-bottom:2rem}
 .modal{display:none;position:fixed;z-index:2000;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(5px);justify-content:center;align-items:center}
 .modal-content{background:#fff;padding:3rem 2.5rem;border-radius:20px;width:90%;max-width:480px;text-align:center;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.15);max-height:92vh;overflow:auto}
+.pix-qrcode{display:flex;justify-content:center;align-items:center;min-height:220px;margin:1rem 0;padding:1rem;background:#fff;border:1px solid #eee;border-radius:12px}
+.pix-qrcode img,.pix-qrcode canvas{display:block;max-width:100%;height:auto}
+.pix-code{width:100%;min-height:90px;padding:.8rem;border:1px solid #ddd;border-radius:8px;background:#FAFAFA;font:.75rem monospace;resize:vertical;word-break:break-all}
+.btn-copy{margin-top:.7rem;background:var(--olive-dark)}
+.btn-copy:hover{background:var(--olive-primary)}
 .close-modal{position:absolute;top:20px;right:25px;font-size:1.8rem;cursor:pointer;color:#aaa}
 .close-modal:hover{color:var(--text-color)}
 .rsvp-form{max-width:650px;margin:0 auto;background:#fff;padding:3.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.03);border:1px solid rgba(85,107,47,.1)}
@@ -186,8 +191,10 @@ section.s{padding:4rem 5%}.rsvp-form{padding:2rem 1.3rem}.section-title{font-siz
     <span class="close-modal" onclick="closePixModal()">&times;</span>
     <h3 id="modalGiftTitle" style="color:var(--olive-dark);margin-bottom:.3rem">Presentear</h3>
     <p id="modalGiftPrice" style="font-weight:700;color:var(--olive-primary);margin-bottom:1rem;font-size:1.1rem"></p>
-    <p style="font-size:.85rem;color:#666;margin-bottom:1rem">Faça o Pix pelo nosso link do Nubank:</p>
-    <a class="btn-buy" target="_blank" rel="noopener" href="https://nubank.com.br/cobrar/46s99/6acc27f6-93f7-44fc-a5a8-7f665bd97262">Abrir Pix (Nubank)</a>
+    <p style="font-size:.85rem;color:#666;margin-bottom:1rem">Escaneie o QR Code ou copie o Pix Copia e Cola:</p>
+    <div id="pixQrCode" class="pix-qrcode" aria-label="QR Code do Pix"></div>
+    <textarea id="pixCode" class="pix-code" readonly aria-label="Pix Copia e Cola"></textarea>
+    <button id="copyPixBtn" class="btn-buy btn-copy" type="button" onclick="copiarPix()">Copiar Pix Copia e Cola</button>
     <p style="font-size:.9rem;color:#666;margin-top:1.4rem">Muito obrigado pelo carinho! 💚</p>
   </div>
 </div>
@@ -220,6 +227,9 @@ section.s{padding:4rem 5%}.rsvp-form{padding:2rem 1.3rem}.section-title{font-siz
 <script>
 var EMAILS="Douglasr1.9.f@gmail.com,Camedeiros36@gmail.com";
 var APPS_URL="https://script.google.com/macros/s/AKfycbzVBPeUsjloq_mBVrU77MHXRE65OOHtRezRU6I6m2WQapUODPGoycYkS9PadP5Rgcki/exec";
+var PIX_KEY="432daa05-c758-465e-8f9c-cfc11ace865f";
+var PIX_NAME="CAMILA E DOUGLAS";
+var PIX_CITY="MANAUS";
 var listaConvidados=["TAMARA FREITAS", "LUIZ PEREIRA", "LUIZA PEREIRA", "DOUGLAS SILVA", "ELOIZA BRITO", "MARIA CLARA", "FABIANE FERREIRA", "JONAS FERREIRA", "EVALDO BARBOSA", "DANIEL FREITAS", "MICHAEL FERREIRA", "ELIZANETE DA SILVA", "EDVALDO GUERREIRO", "ALIETE GUERREIRO", "ANTONIO SILVA", "CHRISTINA GOMES", "PAULO ELMER", "PIETRA SOPHIA", "DEBORA MENDONÇA", "DIEGO PENA", "THAIANE PESSOA", "EMMANUEL MOARES", "CINTHYA MORAES", "GISLENE GUIMARÃES", "RENAN FARIAS", "AMANDA BARROS", "REGILANE CASTELO", "REGIANE CASTELO", "RAIMUNDA CASTELO", "MARCOS PAULO", "GUTIERRE BARROS", "RYAN YURI", "BRUNA GARCIA", "PEDRO RADZINSKY", "VICTÓRIA MARCELLE", "FABIO ARTHUR", "KAROLINE AMARAL", "HANNAH LOUISE", "LIVIA VALENTINA", "GABRIELLI SILVA", "SUSE MARINHO", "NEILON REIS", "GISELLE ARAUJO", "ALFREDO SANTANA", "CLARICE MOARES", "EDUARDO SALERNO", "FELIPE VILELA", "RAYNÁ VALENTE","YASMYM MACIEL","JEAN FACCIO","MARCUS RAFAEL","KARINE ANDREZA","BERENICE BITTENCOURT","ADIRLEY LOPES","LORENA AGUIAR"];
 
 var T=new Date("2027-01-13T15:30:00-04:00").getTime();
@@ -228,6 +238,43 @@ function tick(){var d=Math.max(0,T-Date.now());
  days.innerText=p(Math.floor(d/864e5));hours.innerText=p(Math.floor(d%864e5/36e5));
  minutes.innerText=p(Math.floor(d%36e5/6e4));seconds.innerText=p(Math.floor(d%6e4/1e3))}
 tick();setInterval(tick,1000);
+
+function pixField(id,value){return id+String(value.length).padStart(2,"0")+value}
+function pixCrc16(payload){
+ var crc=0xFFFF;
+ for(var i=0;i<payload.length;i++){
+  crc^=payload.charCodeAt(i)<<8;
+  for(var j=0;j<8;j++)crc=(crc&0x8000)?(crc<<1)^0x1021:crc<<1;
+  crc&=0xFFFF;
+ }
+ return crc.toString(16).toUpperCase().padStart(4,"0")
+}
+function pixText(text,max){
+ return text.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Za-z0-9 ]/g,"").toUpperCase().slice(0,max)
+}
+function valorPix(valor){
+ var n=Number(String(valor).replace(/\./g,"").replace(",","."));
+ return n.toFixed(2)
+}
+function gerarPix(valor){
+ var merchant=pixField("00","BR.GOV.BCB.PIX")+pixField("01",PIX_KEY);
+ var payload=pixField("00","01")+pixField("26",merchant)+pixField("52","0000")+
+  pixField("53","986")+pixField("54",valorPix(valor))+pixField("58","BR")+
+  pixField("59",pixText(PIX_NAME,25))+pixField("60",pixText(PIX_CITY,15))+
+  pixField("62",pixField("05","***"))+"6304";
+ return payload+pixCrc16(payload)
+}
+function renderPix(valor){
+ var code=gerarPix(valor),qr=document.getElementById("pixQrCode"),field=document.getElementById("pixCode");
+ field.value=code;qr.innerHTML="";
+ if(window.QRCode)new QRCode(qr,{text:code,width:200,height:200,colorDark:"#000000",colorLight:"#ffffff"})
+}
+function copiarPix(){
+ var field=document.getElementById("pixCode"),button=document.getElementById("copyPixBtn");
+ function ok(){var old=button.innerText;button.innerText="Pix copiado!";setTimeout(function(){button.innerText=old},1800)}
+ if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(field.value).then(ok).catch(function(){field.select();document.execCommand("copy");ok()})}
+ else{field.select();document.execCommand("copy");ok()}
+}
 
 function switchTab(ev,id){
  document.querySelectorAll(".gift-content").forEach(function(c){c.classList.remove("active")});
@@ -269,6 +316,7 @@ G.forEach(function(g,i){
  grid.appendChild(d)});
 grid.onclick=function(e){var i=e.target.getAttribute("data-i");if(i===null)return;
  cur={n:G[i][0],v:G[i][1]};modalGiftTitle.innerText=cur.n;modalGiftPrice.innerText="Valor sugerido: R$ "+cur.v;
+ renderPix(cur.v);
  pixModal.style.display="flex"};
 function closePixModal(){pixModal.style.display="none"}
 window.onclick=function(e){if(e.target==pixModal)closePixModal()};
@@ -296,5 +344,6 @@ function confirmar(e){e.preventDefault();
  for(var i=0;i<22;i++){var e=document.createElement("span");e.className="pt";var w=6+Math.random()*9;
   e.style.cssText="left:"+(Math.random()*100)+"%;width:"+w+"px;height:"+(w*1.4)+"px;opacity:"+(.25+Math.random()*.5)+";animation-duration:"+(9+Math.random()*9)+"s;animation-delay:-"+(Math.random()*14)+"s";b.appendChild(e)}})();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </body>
 </html>
